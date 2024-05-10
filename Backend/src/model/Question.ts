@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface IQuestion extends Document {
+export interface IQuestion extends Document {
   question_type: string;
   question_text: string;
   question_options: string[];
@@ -8,7 +8,7 @@ interface IQuestion extends Document {
   answer: (newAnswer: string[]) => void;
 }
 
-const QuestionSchema: Schema = new Schema({
+export const QuestionSchema: Schema = new Schema({
   question_type: { type: String, required: true },
   question_text: { type: String, required: true },
   question_options: { type: [String], required: true },
