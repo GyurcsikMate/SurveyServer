@@ -1,11 +1,15 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 import bcrypt from "bcrypt";
+import { ISurvey, SurveySchema } from "./Survey";
+import { ISurveyResponse, SurveyResponseSchema } from "./SurveyResponse";
 
 const SALT_FACTOR = 10;
 
 interface IUser extends Document {
   email: string;
   password: string;
+  own_surveys: [ISurvey];
+  completed_surveys: [ISurveyResponse];
   comparePassword: (
     candidatePassword: string,
     callback: (error: Error | null, isMatch: boolean) => void
@@ -15,6 +19,8 @@ interface IUser extends Document {
 const UserSchema: Schema<IUser> = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
+  own_surveys: [SurveySchema],
+  completed_surveys: [SurveyResponseSchema],
 });
 
 // hook
