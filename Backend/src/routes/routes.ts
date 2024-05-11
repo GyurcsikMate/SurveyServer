@@ -116,6 +116,14 @@ export const configureRoutes = (
       res.status(500).send("User is not logged in.");
     }
   });
-
+  router.get('/users', async (req: Request, res: Response) => {
+    try {
+      const surveys = await User.find();
+      res.json(surveys);
+    } catch (err:any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+  
   return router;
-};
+}
