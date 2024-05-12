@@ -68,14 +68,15 @@ export const configureRoutes = (
 
 
   router.post("/login", (req: Request, res: Response, next: NextFunction) => {
-    console.log(req);
     passport.authenticate(
       "local",
       (error: string | null, user: typeof User) => {
+        console.log(user)
         if (error) {
           console.log(error);
           res.status(500).send(error);
         } else {
+          
           if (!user) {
             res.status(400).send("User not found.");
           } else {
