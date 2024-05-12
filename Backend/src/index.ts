@@ -37,7 +37,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // bodyParser
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // cookieParser
 app.use(cookieParser());
